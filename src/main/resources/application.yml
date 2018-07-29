@@ -1,0 +1,30 @@
+spring:
+  jpa:
+    database: oracle
+    show-sql: true
+    hibernate:
+    #none启动的时候数据库不做任何处理，启动速度快
+      ddl-auto: none
+  datasource:
+    url: jdbc:oracle:thin:@rg2018:1521/orcl
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    username: lwj_xhdrg
+    password: 1
+    #类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    generate-unique-name: true
+    druid:
+      #初始化连接池数量
+      initial-size: 1
+      #最大活跃数
+      max-active: 10
+      #最大连接等待时间
+      max-wait: 60000
+      #数据库用户名和密码
+      #username: druid
+      #password: 123qwe
+
+
+debug: true
+trace: false
+#配置监控统计拦截的fliters,去掉后监控界面的sql将无法统计，‘wall’用于防火墙
