@@ -22,24 +22,26 @@ import java.util.List;
  * ==========================
  */
 @RestController
-@RequestMapping(value="/patient")
+@RequestMapping(value = "/patient")
 public class PatientController {
     @Autowired
     private PatientJPA patientJPA;
     @Autowired
     private EntityManagerFactory entityManagerFactory;
 
-    @RequestMapping(value="/list",method = RequestMethod.GET)
-    public List<Patient>  list(){
-        return  patientJPA.findAll();
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public List<Patient> list() {
+        return patientJPA.findAll();
     }
-    @RequestMapping(value = "/save",method = RequestMethod.POST)
-    public Patient  save(@RequestBody Patient patient){
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public Patient save(@RequestBody Patient patient) {
         return patientJPA.save(patient);
     }
-    @RequestMapping(value="/delete",method = RequestMethod.DELETE)
-    public void  delete(Patient patient){
-         patientJPA.delete(patient);
+
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    public void delete(Patient patient) {
+        patientJPA.delete(patient);
     }
 
 

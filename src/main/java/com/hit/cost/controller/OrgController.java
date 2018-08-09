@@ -31,31 +31,35 @@ import java.util.Optional;
 public class OrgController {
     @Autowired
     private OrgJPA orgJPA;
-    @RequestMapping(value = "list",method = RequestMethod.GET)
-    public List<Org> queryAll(){
+
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    public List<Org> queryAll() {
         return orgJPA.findAll();
     }
-    @RequestMapping(value = "allbusinessunit",method = RequestMethod.GET)
-    public  List<Org> queryAllBusinessUnit(){
+
+    @RequestMapping(value = "allbusinessunit", method = RequestMethod.GET)
+    public List<Org> queryAllBusinessUnit() {
         return orgJPA.findAllBusinessUnit();
     }
-    @RequestMapping(value = "code",method = RequestMethod.POST)
-    public Org findbyCode(@RequestParam(name="code") String code){
-        Optional<Org> res= orgJPA.findOne(new Specification<Org>() {
+
+    @RequestMapping(value = "code", method = RequestMethod.POST)
+    public Org findbyCode(@RequestParam(name = "code") String code) {
+        Optional<Org> res = orgJPA.findOne(new Specification<Org>() {
             @Override
             public Predicate toPredicate(Root<Org> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-                query.where(criteriaBuilder.equal(root.get("code"),code));
+                query.where(criteriaBuilder.equal(root.get("code"), code));
                 return null;
             }
         });
-        return  res.get();
+        return res.get();
     }
-    @RequestMapping(value = "sons",method = RequestMethod.POST)
-    public List<Org> findSons(@RequestParam(name="innercode") String innercode){
-       return orgJPA.findAll(new Specification<Org>() {
+
+    @RequestMapping(value = "sons", method = RequestMethod.POST)
+    public List<Org> findSons(@RequestParam(name = "innercode") String innercode) {
+        return orgJPA.findAll(new Specification<Org>() {
             @Override
             public Predicate toPredicate(Root<Org> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-                query.where(criteriaBuilder.like(root.get("innercode"),innercode+"%"));
+                query.where(criteriaBuilder.like(root.get("innercode"), innercode + "%"));
                 return null;
             }
         });

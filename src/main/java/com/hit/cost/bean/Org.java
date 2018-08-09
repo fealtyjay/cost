@@ -6,7 +6,8 @@ import javax.persistence.Table;
 
 /**
  * =========================
- *如何要使用JPA的自定义查询，那就必须在@Entity中映射name属性
+ * 如何要使用JPA的自定义查询，那就必须在@Entity中映射name属性
+ *
  * @Author:fealty
  * @Description:
  * @Date：2018/7/29 20:57

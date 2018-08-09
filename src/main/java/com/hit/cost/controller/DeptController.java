@@ -33,5 +33,9 @@ public class DeptController {
     public  List<Dept> getAllSonsByCode(@RequestParam(name = "code") String code){
         return null;
     }
+    @RequestMapping(value = "deletebycode",method = RequestMethod.POST)
+    public  void deleteByCode(@RequestParam(name="code") String code){
+        deptJPA.deleteByCode(code);
+    }
 
 }
