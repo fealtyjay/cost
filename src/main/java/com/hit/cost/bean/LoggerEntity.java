@@ -23,10 +23,10 @@ public class LoggerEntity implements Serializable {
      * CREATE TABLE
      *     logger_infos
      *     (
-     *         ali_id VARCHAR2(11) NOT NULL,
+     *         ali_id VARCHAR2(100) NOT NULL,
      *         ali_session_id VARCHAR2(100),
      *         ali_time TIMESTAMP(0),
-     *         ali_return_time VARCHAR2(50),
+     *         ali_return_time TIMESTAMP(0),
      *         ali_return_data CLOB,
      *         ali_http_status_code VARCHAR2(10),
      *         ali_time_consuming VARCHAR2(8),
@@ -34,8 +34,7 @@ public class LoggerEntity implements Serializable {
      *         ali_uri VARCHAR2(100),
      *         ali_type VARCHAR2(50),
      *         ali_method VARCHAR2(10),
-     *         ali_param_data CLOB,
-     *         PRIMARY KEY (ali_id)
+     *         ali_param_data CLOB, PRIMARY KEY (ali_id)
      *     )
      */
     @Id
