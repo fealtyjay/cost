@@ -57,6 +57,11 @@
 			<artifactId>fastjson</artifactId>
 			<version>1.2.47</version>
 		</dependency>
+        <!--java servlet支持 -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
         <!-- oracle jdk8和ojdbc6jar包有冲突，从Oracle官网重新下载ojdbc6的jar包-->
         <dependency>
             <groupId>com.oracle</groupId>

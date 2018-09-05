@@ -3,6 +3,7 @@ package com.hit.cost;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.hit.cost.interceptors.LoggerInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -58,7 +59,8 @@ public class FastJsonConfiguration implements WebMvcConfigurer {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-
+        //注册拦截器
+        registry.addInterceptor( new LoggerInterceptor());
     }
 
     @Override
