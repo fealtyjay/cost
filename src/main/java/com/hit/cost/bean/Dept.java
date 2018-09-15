@@ -1,5 +1,7 @@
 package com.hit.cost.bean;
 
+import com.hit.cost.base.BaseEntity;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -16,7 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="org_dept")
-public class Dept {
+public class Dept extends BaseEntity {
 
     /**
      * ADDRESS : ~
@@ -562,4 +564,6 @@ public class Dept {
     public void setPk_calat(String pk_calat) {
         this.pk_calat = pk_calat;
     }
+
+
 }

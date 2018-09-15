@@ -1,6 +1,7 @@
 package com.hit.cost.interceptors;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.hit.cost.bean.LoggerEntity;
 import com.hit.cost.jpa.LoggerJPA;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * =========================
@@ -41,18 +44,20 @@ public class LoggerInterceptor implements HandlerInterceptor{
             sb.append(line);
         }
 //        System.out.println(sb);
-        String requestBody = JSON.toJSONString(sb.toString(),
-                SerializerFeature.DisableCircularReferenceDetect,
-                SerializerFeature.WriteMapNullValue);
+        JSONObject requestbody = (JSONObject) JSON.parse(sb.toString());
+//        String requestBody = JSON.toJSONString(sb.toString(),
+//////                SerializerFeature.DisableCircularReferenceDetect,
+//////                SerializerFeature.WriteMapNullValue);
+        Map<String,Object> map = new HashMap<>();
+        map.put("parameter",request.getParameterMap());
+        map.put("body",requestbody);
         String sessionId = request.getRequestedSessionId();
         String uri = request.getRequestURI();
-        String paramData = JSON.toJSONString(request.getParameterMap(),
+        String paramData = JSON.toJSONString(map,
                 SerializerFeature.DisableCircularReferenceDetect,
         SerializerFeature.WriteMapNullValue);
         loggerEntity.setClientIp(getClientIP(request));
-        loggerEntity.setParamData(JSON.toJSONString(String.format("parameter : %s,body : %s",paramData,requestBody),
-                SerializerFeature.DisableCircularReferenceDetect,
-                SerializerFeature.WriteMapNullValue));
+        loggerEntity.setParamData(paramData);
         loggerEntity.setSessionId(sessionId);
         loggerEntity.setUri(uri);
         loggerEntity.setTime(new Timestamp(System.currentTimeMillis()));

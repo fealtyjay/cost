@@ -23,6 +23,9 @@ spring:
       #数据库用户名和密码
       #username: druid
       #password: 123qwe
+  freemarker:
+    allow-request-override: true
+
 
 
 debug: true

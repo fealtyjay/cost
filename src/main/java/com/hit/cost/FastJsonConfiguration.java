@@ -63,6 +63,10 @@ public class FastJsonConfiguration implements WebMvcConfigurer {
         registry.addInterceptor( new LoggerInterceptor());
     }
 
+    /**
+     * 自定义资源文件访问路径
+     * @param registry
+     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
