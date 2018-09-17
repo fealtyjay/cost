@@ -2,9 +2,7 @@ package com.hit.cost.bean;
 
 import com.hit.cost.base.BaseEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * =========================
@@ -109,7 +107,10 @@ public class Dept extends BaseEntity {
     private String pk_dept;
     private String pk_fatherorg;
     private String pk_group;
-    private String pk_org;
+    @OneToOne
+    @JoinColumn( name="pk_org")
+    private Org  org;
+//    private String pk_org;
     private String pk_vid;
     private String principal;
     private String resposition;
@@ -381,12 +382,20 @@ public class Dept extends BaseEntity {
         this.pk_group = pk_group;
     }
 
-    public String getPk_org() {
-        return pk_org;
+//    public String getPk_org() {
+//        return pk_org;
+//    }
+//
+//    public void setPk_org(String pk_org) {
+//        this.pk_org = pk_org;
+//    }
+
+    public Org getOrg() {
+        return org;
     }
 
-    public void setPk_org(String pk_org) {
-        this.pk_org = pk_org;
+    public void setOrg(Org org) {
+        this.org = org;
     }
 
     public String getPk_vid() {

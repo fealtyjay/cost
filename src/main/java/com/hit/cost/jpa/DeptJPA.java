@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Entity;
@@ -18,7 +19,9 @@ import java.io.Serializable;
  * @Date：2018/7/27 16:44
  */
 @Transactional
-public interface DeptJPA extends JpaRepository<Dept,String>, JpaSpecificationExecutor<Dept>,Serializable{
+public interface DeptJPA extends JpaRepository<Dept,String>,
+        JpaSpecificationExecutor<Dept>,
+        Serializable, QuerydslPredicateExecutor<Dept> {
     @Modifying
     /**
      * nativeQuery：true 使用原生SQL语句
