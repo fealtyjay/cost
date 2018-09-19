@@ -1,8 +1,8 @@
 package com.hit.cost.bean;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * =========================
@@ -215,6 +215,9 @@ public class Org {
     private String pk_group;
     @Id
     private String pk_org;
+    @OneToMany()
+    @JoinColumn(name = "pk_org")
+    private List<Dept> depts = new ArrayList<Dept>();
     private String pk_timezone;
     private String pk_vid;
     private String principal;
@@ -1022,5 +1025,9 @@ public class Org {
 
     public void setSyncloud(String syncloud) {
         this.syncloud = syncloud;
+    }
+
+    public List<Dept> getDepts() {
+        return depts;
     }
 }

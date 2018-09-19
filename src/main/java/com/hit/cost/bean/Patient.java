@@ -2,10 +2,7 @@ package com.hit.cost.bean;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -64,7 +61,7 @@ public class Patient implements Serializable{
      * VSEX : 2
      * PK_DEPT : ~
      */
-
+    @OrderColumn
     private String code;
     private String creationtime;
     private String creator;

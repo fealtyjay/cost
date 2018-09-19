@@ -1,7 +1,10 @@
 package com.hit.cost.controller;
 
 import com.hit.cost.bean.Org;
+import com.hit.cost.bean.QOrg;
 import com.hit.cost.jpa.OrgJPA;
+import com.hit.cost.query.Inquirer;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,6 +66,14 @@ public class OrgController {
                 return null;
             }
         });
+    }
+    @RequestMapping(value = "many")
+    public  List<Org> many(){
+        QOrg qOrg = QOrg.org;
+        BooleanExpression expression = qOrg.isbusinessunit.eq("Y");
+        Inquirer inquirer  = new Inquirer();
+        inquirer.putExpression(expression);
+        return inquirer.iteratorToList(orgJPA.findAll(inquirer.buildQuery()));
     }
 
 

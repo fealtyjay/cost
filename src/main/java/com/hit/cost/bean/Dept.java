@@ -107,9 +107,9 @@ public class Dept extends BaseEntity {
     private String pk_dept;
     private String pk_fatherorg;
     private String pk_group;
-    @OneToOne
-    @JoinColumn( name="pk_org")
-    private Org  org;
+//    @OneToOne
+//    @JoinColumn( name="pk_org")
+//    private Org  org;
 //    private String pk_org;
     private String pk_vid;
     private String principal;
@@ -390,13 +390,13 @@ public class Dept extends BaseEntity {
 //        this.pk_org = pk_org;
 //    }
 
-    public Org getOrg() {
-        return org;
-    }
-
-    public void setOrg(Org org) {
-        this.org = org;
-    }
+//    public Org getOrg() {
+//        return org;
+//    }
+//
+//    public void setOrg(Org org) {
+//        this.org = org;
+//    }
 
     public String getPk_vid() {
         return pk_vid;
