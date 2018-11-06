@@ -40,14 +40,7 @@ public class Inquirer {
         BooleanExpression booleanExpression = null;
         for (int i = 0;i<expressionList.size();i++
              ) {
-            if ( i == 0){
-                booleanExpression = expressionList.get(i);
-            }
-            else{
-                booleanExpression = booleanExpression.and(
-                        expressionList.get(i)
-                );
-            }
+            booleanExpression = i == 0 ? expressionList.get(i) : booleanExpression.and(expressionList.get(i));
         }
         return  booleanExpression;
     }

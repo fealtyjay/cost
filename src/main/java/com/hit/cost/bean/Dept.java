@@ -1,6 +1,7 @@
 package com.hit.cost.bean;
 
 import com.hit.cost.base.BaseEntity;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 
@@ -76,6 +77,7 @@ public class Dept extends BaseEntity {
      */
 
     private String address;
+    @NotEmpty
     private String code;
     private String createdate;
     private String creationtime;
