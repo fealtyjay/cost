@@ -5,8 +5,10 @@ import com.hit.cost.bean.QDept;
 import com.hit.cost.jpa.DeptJPA;
 import com.hit.cost.query.Inquirer;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.core.types.dsl.StringExpression;
 import com.querydsl.jpa.impl.JPAQuery;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -33,6 +35,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "/dept")
+@Api(tags = "部门API")
 public class DeptController {
     @Autowired
     private DeptJPA deptJPA;
@@ -40,10 +43,12 @@ public class DeptController {
     @PersistenceContext
     private EntityManager entityManager;
     @RequestMapping(value="list",method = RequestMethod.GET)
+    @ApiOperation(value="查询所有用户")
     public List<Dept> queryAll(){
         return deptJPA.findAll();
     }
     @RequestMapping(value="sons",method = RequestMethod.POST)
+    @ApiOperation(value="根据编码查询所有子孙级部门")
     public  List<Dept> getAllSonsByCode(@RequestParam(name = "code") String code){
         return null;
     }
@@ -58,6 +63,8 @@ public class DeptController {
      * @return
      */
     @RequestMapping(value = "cutpage",method = RequestMethod.POST)
+    @ApiImplicitParam(name="page",value="分页查询页数")
+    @ApiOperation(value="分页查询")
     public List<Dept> cutPage( int page){
         Dept dept  = new Dept();
         dept.setPage(page);
@@ -87,6 +94,7 @@ public class DeptController {
       return deptJPA.findAll(pageRequest).getContent();
     }
    @RequestMapping(value = "query",method = RequestMethod.GET)
+   @ApiOperation(value="查询所有")
     public  List<Dept>  list(){
        QDept qDept =QDept.dept;
        JPAQuery<Dept> jpaQuery = new JPAQuery<>(entityManager);
@@ -100,6 +108,7 @@ public class DeptController {
                        fetch();
    }
    @RequestMapping(value = "join")
+   @ApiOperation(value = "模糊查询内部编码")
    public List<Dept> join(){
         QDept qDept =QDept.dept;
         //查询条件

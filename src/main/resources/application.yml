@@ -31,3 +31,10 @@ spring:
 debug: true
 trace: false
 #配置监控统计拦截的fliters,去掉后监控界面的sql将无法统计，‘wall’用于防火墙
+swagger:
+  enabled: true
+  user: zeus
+  email: weihuilin@yonyou.com
+  blog: https://www.csdn.net/
+  title: 文档接口练习
+  description: 使用swagger组件构建的rest风格的接口文档说明
