@@ -35,7 +35,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "/dept")
-@Api(tags = "部门API")
+@Api(value = "部门API")
 public class DeptController {
     @Autowired
     private DeptJPA deptJPA;
@@ -64,7 +64,7 @@ public class DeptController {
      */
     @RequestMapping(value = "cutpage",method = RequestMethod.POST)
     @ApiImplicitParam(name="page",value="分页查询页数")
-    @ApiOperation(value="分页查询")
+    @ApiOperation(value="分页查询，每页默认五条数据")
     public List<Dept> cutPage( int page){
         Dept dept  = new Dept();
         dept.setPage(page);
@@ -80,6 +80,8 @@ public class DeptController {
      * @return
      */
     @RequestMapping(value = "sort",method = RequestMethod.POST)
+    @ApiOperation(value="分页查询并排序，每页默认十条数据")
+    @ApiImplicitParam(name="page",value="分页查询页数")
     public List<Dept> sortDatas(int page){
       Dept dept = new Dept();
       dept.setPage(page);

@@ -7,6 +7,10 @@ import com.hit.cost.jpa.TokenJPA;
 import com.hit.cost.jpa.UserInfoJPA;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,12 +38,18 @@ import java.util.concurrent.TimeUnit;
  */
 @RestController
 @RequestMapping(value="jwt")
+@Api(value="JWT加密API")
 public class TokenController {
     @Autowired
     private UserInfoJPA userInfoJPA;
     @Autowired
     private TokenJPA tokenJPA;
     @RequestMapping(value="/token",method = {RequestMethod.POST,RequestMethod.GET})
+    @ApiOperation(value ="token校验",notes = "校验APPID的token是否过期，密码是否正确")
+    @ApiImplicitParams(value={
+            @ApiImplicitParam(name = "appID",value = "appID",required = true),
+            @ApiImplicitParam(name = "appSecret",value = "密码",required = true)})
+
     public TokenResult token(@RequestParam String appID,@RequestParam String appSecret){
         TokenResult tokenResult  = new TokenResult();
         if (appID==null||appID.isEmpty()){
