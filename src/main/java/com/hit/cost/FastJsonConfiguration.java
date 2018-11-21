@@ -74,7 +74,11 @@ public class FastJsonConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-
+        //跨域请求配置
+        registry.addMapping("/**").
+                allowedMethods("*").
+                allowedOrigins("*").
+                allowedHeaders("*");
     }
 
     @Override
