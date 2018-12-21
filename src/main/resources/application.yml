@@ -25,6 +25,18 @@ spring:
       #password: 123qwe
   freemarker:
     allow-request-override: true
+#配置Redis数据库
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    pool:
+      max-active: 20
+      max-wait: 60000
+    datasource: 0
+    jedis:
+      pool:
+        max-idle: 20
+        min-idle: 1
 
 
 
