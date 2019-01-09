@@ -42,6 +42,11 @@ public class OrgController {
     @RequestMapping(value = "list", method = RequestMethod.GET)
     @ApiOperation(value="查询所有组织",notes = "查询出当前数据库中的所有组织")
     public List<Org> queryAll() {
+        List<Org> orgs = orgJPA.findAll();
+        long count = orgs.stream().count();
+        System.out.println("查询出："+count+" 条数据");
+        orgs.stream().forEach(System.out::println);
+        //orgs.stream().forEach(Org ::getCode);
         return orgJPA.findAll();
     }
 

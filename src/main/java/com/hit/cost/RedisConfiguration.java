@@ -13,6 +13,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 
 import java.lang.reflect.Method;
 import java.time.Duration;
+import java.util.Arrays;
 
 /**
  * =========================
@@ -45,10 +46,11 @@ public class RedisConfiguration extends CachingConfigurerSupport {
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append(target.getClass().getName());
                 stringBuilder.append(method.getName());
-                for (Object para : params
-                ) {
-                    stringBuilder.append(para.toString());
-                }
+                Arrays.stream(params).forEach( stringBuilder::append);
+//                for (Object para : params
+//                ) {
+//                    stringBuilder.append(para.toString());
+//                }
                 System.out.println("调用redis缓存" + stringBuilder.toString());
                 return stringBuilder.toString();
             }
