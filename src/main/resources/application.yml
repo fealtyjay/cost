@@ -6,7 +6,10 @@ spring:
     #none启动的时候数据库不做任何处理，启动速度快
       ddl-auto: none
   datasource:
-    url: jdbc:oracle:thin:@rg2018:1521/orcl
+    #url: jdbc:oracle:thin:@rg2018:1521/orcl
+    #url: jdbc:oracle:thin:@172.20.52.52:3000/orcl
+    url: jdbc:oracle:thin:@10.2.108.19:1521/orcl
+    jdbc:oracle: thin:@10.2.108.19:1521/orcl
     driver-class-name: oracle.jdbc.driver.OracleDriver
     username: lwj_xhdrg
     password: 1
